@@ -1,91 +1,30 @@
- // to define btn start
- let btnStart = document.getElementById("btn_start");
- 
- // to define the element for innerhtml
- let displayNum = document.getElementById("numbers");
+/*
+    1. visualizzare in pagina 5 numeri casuali
+    2. parte un timer di 30 secondi
+    3. appiono 5 prompt che chiedono all'utente i numeri che sono apparsi
+    4. dopo averli inseriti il computer mostra quanti e quali numeri sono stati indovinati
+*/
 
- // to define input for array
- let input = document.getElementById("input");
+// per visualizzare in pagina 5 numeri casuali faccio un array con dentro dei numeri con un algoritmo math.floor(math.random()) con un range di 100 numeri
 
-let btnInvia = document.getElementById("invia");
+//creo l'array vuoto
+let numArray = [];
 
-let verification = document.getElementById("verifica");
-
- // create and array of 16 bomb
- const myArrNumRandom = genArrNumRandomMinMax(1, 1, 100);
- console.log(myArrNumRandom)
-
-btnStart.addEventListener('click', 
-
-    function(){
-
-        displayNum.innerHTML  += myArrNumRandom
-        console.log(myArrNumRandom)
-       
+//creo un ciclo per far stampare 5 numeri randomici
+while (numArray.length < 5) {
+    let randomNumbers = Math.floor(Math.random() * 100) + 1;
+    if (!numArray.includes(randomNumbers)) {
+        numArray.push(randomNumbers);
     }
-    
-);
-
-let arrayUtente = [];
-
-btnInvia.addEventListener('click', function(){
-
-   
-    const utenteNum = parseInt(input.value);
-    
-    arrayUtente.push(utenteNum)
-    console.log(arrayUtente)
-
-})
-
-verification.addEventListener('click', function() {
-    if ( arrayUtente !== myArrNumRandom) {
-        console.log("hai vinto")
-    } else {
-        console.log("suca")
-    }
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// FUNCTIONS FOR GENERATE RANDOM NUMBERS
-// this function genetare random numbers inside the div.box
-function randomInteger(min, max) {
-    return ( Math.floor(Math.random()* (max + 1) - min) + min);
 }
 
-function genArrNumRandomMinMax (howMany, minNum, maxNum) {
+console.log(numArray)
 
-    // callback to the function
-    // let newNumber = randomInteger(minNum, maxNum);
+//ora stampiamo i 5 numeri
 
-    // generate an array of howMany elements
-    const arrNum = [];
+    //prima dichiaro il contenitore per stampre i numeri
+    const cont = document.querySelector(".container");
 
-    while (arrNum.length < howMany) {
+    //ora prendo il contenitore e ci stampo i numeri
+    numArray.forEach( element => cont.innerHTML += `<span class="box">${element}</span>`)
 
-        // define again the newNumber because the old one is outside of the while
-        let newNumber = randomInteger(minNum, maxNum);
-
-        // if the newNumber is not inside of the arrNum, push it to the array
-        if (!arrNum.includes(newNumber)) {
-            arrNum.push(newNumber);
-        }
-    }
-
-    return arrNum;
-
-
-}
