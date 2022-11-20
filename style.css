@@ -9,6 +9,12 @@
     justify-content: space-around;
 }
 
+.results {
+    display: flex;
+    justify-content: space-around;
+}
+
+
 .box {
     display: flex;
     align-items: center;
@@ -17,4 +23,8 @@
     height: 50px;
     border: 1px solid black;
     background-color: lightblue;
+}
+
+.hidden {
+    display: none;
 }
